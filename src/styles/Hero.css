@@ -133,9 +133,23 @@
   animation: decorFloat2 5s ease-in-out infinite;
 }
 
-.d1 { top: 60px; left: 150px; animation-delay: 0s; }
-.d2 { top: 260px; left: 10px; animation-delay: 1.4s; }
-.d3 { top: 350px; left: 90px; animation-delay: 2.6s; }
+.d1 {
+  top: 60px;
+  left: 150px;
+  animation-delay: 0s;
+}
+
+.d2 {
+  top: 260px;
+  left: 10px;
+  animation-delay: 1.4s;
+}
+
+.d3 {
+  top: 350px;
+  left: 90px;
+  animation-delay: 2.6s;
+}
 
 .decor-ping-wrap {
   position: absolute;
@@ -169,8 +183,15 @@
 }
 
 @keyframes decorPing {
-  0% { transform: scale(1); opacity: 0.8; }
-  100% { transform: scale(7); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(7);
+    opacity: 0;
+  }
 }
 
 .decor-terminal {
@@ -206,8 +227,16 @@
 }
 
 @keyframes decorBlink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
+
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .decor-orbit-mini {
@@ -280,16 +309,33 @@
 }
 
 @keyframes decorFloat1 {
-  0%, 100% { transform: translateY(0) rotate(18deg); }
-  50% { transform: translateY(-14px) rotate(24deg); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(18deg);
+  }
+
+  50% {
+    transform: translateY(-14px) rotate(24deg);
+  }
 }
 
 @keyframes decorFloat2 {
-  0%, 100% { transform: translateY(0); opacity: 0.7; }
-  50% { transform: translateY(16px); opacity: 1; }
+
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(16px);
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .decor-square,
   .decor-orb,
   .decor-badge-1,
@@ -305,53 +351,27 @@
   }
 }
 
-@media (max-width: 640px) {
-  .hero-left-decor {
-    display: none;
-  }
-}
-
 /* ---------- 3D Hero Visual ---------- */
 .hero-visual {
-  display: none;
-}
-
-@media (min-width: 900px) {
-  .hero-content-grid {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.85fr);
-    gap: 24px;
-  }
-
-  .hero-visual {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    perspective: 1400px;
-    --tiltX: 0deg;
-    --tiltY: 0deg;
-    --glowX: 50%;
-    --glowY: 50%;
-  }
+  min-height: 190px;
+  margin-top: -35px;
 }
 
 .hero-3d-stage {
-  position: relative;
-  width: 340px;
-  height: 340px;
-  transform-style: preserve-3d;
-  transform: rotateX(var(--tiltX)) rotateY(var(--tiltY));
-  transition: transform 0.25s var(--ease);
+  width: 300px;
+  height: 300px;
+  transform: scale(0.88)
+    rotateX(var(--tiltX))
+    rotateY(var(--tiltY));
 }
 
 .hero-3d-glow {
   position: absolute;
   inset: -40px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle at var(--glowX) var(--glowY),
-    var(--accent-soft) 0%,
-    transparent 65%
-  );
+  background: radial-gradient(circle at var(--glowX) var(--glowY),
+      var(--accent-soft) 0%,
+      transparent 65%);
   filter: blur(10px);
   transition: background 0.2s linear;
 }
@@ -370,8 +390,15 @@
 }
 
 @keyframes coreBeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
 }
 
 .orbit-ring {
@@ -398,8 +425,13 @@
 }
 
 @keyframes ringRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .orbit-chip-holder {
@@ -434,8 +466,13 @@
 }
 
 @keyframes chipCounter {
-  from { transform: translateX(-50%) rotate(calc(-1 * var(--angle))) rotate(0deg); }
-  to { transform: translateX(-50%) rotate(calc(-1 * var(--angle))) rotate(360deg); }
+  from {
+    transform: translateX(-50%) rotate(calc(-1 * var(--angle))) rotate(0deg);
+  }
+
+  to {
+    transform: translateX(-50%) rotate(calc(-1 * var(--angle))) rotate(360deg);
+  }
 }
 
 .hero-3d-particle {
@@ -448,17 +485,46 @@
   animation: particleFloat 5s ease-in-out infinite;
 }
 
-.p1 { top: 18%; left: 12%; animation-delay: 0s; }
-.p2 { top: 70%; left: 20%; animation-delay: 1.1s; }
-.p3 { top: 24%; left: 82%; animation-delay: 2.2s; }
-.p4 { top: 76%; left: 78%; animation-delay: 3.1s; }
+.p1 {
+  top: 18%;
+  left: 12%;
+  animation-delay: 0s;
+}
+
+.p2 {
+  top: 70%;
+  left: 20%;
+  animation-delay: 1.1s;
+}
+
+.p3 {
+  top: 24%;
+  left: 82%;
+  animation-delay: 2.2s;
+}
+
+.p4 {
+  top: 76%;
+  left: 78%;
+  animation-delay: 3.1s;
+}
 
 @keyframes particleFloat {
-  0%, 100% { transform: translateY(0); opacity: 0.5; }
-  50% { transform: translateY(-18px); opacity: 1; }
+
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translateY(-18px);
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .orbit-core,
   .ring-inner,
   .ring-outer,
@@ -466,6 +532,7 @@
   .hero-3d-particle {
     animation: none;
   }
+
   .hero-3d-stage {
     transition: none;
   }
@@ -495,9 +562,17 @@
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5); }
-  70% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5);
+  }
+
+  70% {
+    box-shadow: 0 0 0 8px rgba(52, 211, 153, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+  }
 }
 
 .hero-title {
@@ -571,8 +646,15 @@
 }
 
 @keyframes scrollDot {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(14px); opacity: 0; }
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
 }
 
 @media (min-width: 900px) {
@@ -585,7 +667,429 @@
   .hero-cta {
     flex-direction: column;
   }
+
   .hero-cta .btn {
     width: 100%;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE HERO ANIMATION
+   Desktop remains unchanged
+   Mobile gets a clean centered animation
+   ========================================================= */
+
+/* ---------- Desktop ---------- */
+
+.hero-visual {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .hero-content-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.85fr);
+    gap: 24px;
+  }
+
+  .hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1400px;
+    --tiltX: 0deg;
+    --tiltY: 0deg;
+    --glowX: 50%;
+    --glowY: 50%;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (min-width: 641px) and (max-width: 899px) {
+
+  .hero {
+    min-height: auto;
+    padding-top: calc(var(--nav-height) + 60px);
+    padding-bottom: 80px;
+  }
+
+  .hero-content-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .hero-inner {
+    max-width: 760px;
+  }
+
+  .hero-left-decor {
+    display: block;
+    opacity: 0.55;
+    transform: scale(0.8);
+    transform-origin: left center;
+  }
+
+  .hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 360px;
+    perspective: 1200px;
+  }
+
+  .hero-3d-stage {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+/* =========================================================
+   MOBILE HERO - COMPLETE RESPONSIVE ANIMATION
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+  .hero {
+    min-height: auto;
+    padding-top: calc(var(--nav-height) + 30px);
+    padding-bottom: 35px;
+    overflow: hidden;
+  }
+
+  .hero-content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    width: 100%;
+  }
+
+  .hero-inner {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+
+  /* ==============================
+     LEFT DECORATIVE ANIMATION
+     ============================== */
+
+  .hero-left-decor {
+    display: block;
+    position: absolute;
+
+    top: -15px;
+    left: 0;
+
+    width: 100%;
+    height: 350px;
+
+    opacity: 0.65;
+
+    transform: scale(0.68);
+    transform-origin: top left;
+
+    z-index: 0;
+    pointer-events: none;
+  }
+
+
+  /* ==============================
+     CONTENT
+     ============================== */
+
+  .hero-inner > *:not(.hero-left-decor) {
+    position: relative;
+    z-index: 2;
+  }
+
+
+  /* ==============================
+     GREETING
+     ============================== */
+
+  .hero-greeting {
+    display: inline-flex;
+    justify-content: center;
+    margin-bottom: 18px;
+    font-size: 0.72rem;
+    padding: 6px 11px;
+  }
+
+
+  /* ==============================
+     TITLE
+     ============================== */
+
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 2.7rem);
+    line-height: 1.12;
+    margin-bottom: 18px;
+  }
+
+  .hero-title .gradient-text {
+    display: inline;
+  }
+
+
+  /* ==============================
+     SUBTITLE
+     ============================== */
+
+  .hero-subtitle {
+    max-width: 100%;
+    margin: 0 auto 22px;
+    padding: 0 5px;
+
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+
+  /* ==============================
+     BUTTONS
+     ============================== */
+
+  .hero-cta {
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+    gap: 10px;
+
+    margin-bottom: 20px;
+  }
+
+  .hero-cta .btn {
+    width: min(100%, 280px);
+    justify-content: center;
+  }
+
+
+  /* ==============================
+     SOCIAL ICONS
+     ============================== */
+
+  .hero-socials {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero-social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+
+  /* =====================================================
+     MAIN 3D ANIMATION
+     ===================================================== */
+
+  .hero-visual {
+    display: flex;
+
+    width: 100%;
+
+    /* Animation content ke closer */
+    min-height: 180px;
+
+    align-items: center;
+    justify-content: center;
+
+    /* animation ko upar lao */
+    margin-top: -35px;
+
+    perspective: 1000px;
+
+    overflow: visible;
+
+    --tiltX: 0deg;
+    --tiltY: 0deg;
+    --glowX: 50%;
+    --glowY: 50%;
+  }
+
+
+  /* ==============================
+     BIGGER ANIMATION
+     ============================== */
+
+  .hero-3d-stage {
+    width: 310px;
+    height: 310px;
+
+    transform:
+      scale(0.92)
+      rotateX(var(--tiltX))
+      rotateY(var(--tiltY));
+
+    transform-style: preserve-3d;
+  }
+
+
+  /* ==============================
+     GLOW
+     ============================== */
+
+  .hero-3d-glow {
+    inset: -35px;
+    filter: blur(16px);
+    opacity: 0.85;
+  }
+
+
+  /* ==============================
+     CORE
+     ============================== */
+
+  .orbit-core {
+    transform: scale(0.9);
+  }
+
+
+  /* ==============================
+     ORBIT RINGS
+     ============================== */
+
+  .orbit-ring {
+    transform: scale(0.9);
+  }
+
+
+  /* ==============================
+     TECHNOLOGY CHIPS
+     ============================== */
+
+  .orbit-chip {
+    font-size: 0.68rem;
+    padding: 5px 9px;
+  }
+
+
+  /* ==============================
+     PARTICLES
+     ============================== */
+
+  .hero-3d-particle {
+    width: 5px;
+    height: 5px;
+  }
+
+
+  /* ==============================
+     SCROLL
+     ============================== */
+
+  .hero-scroll-indicator {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .hero {
+    padding-top: calc(var(--nav-height) + 25px);
+    padding-bottom: 30px;
+  }
+
+  .hero-content-grid {
+    gap: 0;
+  }
+
+  .hero-title {
+    font-size: 1.9rem;
+    margin-bottom: 16px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+
+  /* LEFT DECORATION */
+
+  .hero-left-decor {
+    top: -10px;
+    left: 0;
+
+    transform: scale(0.58);
+
+    opacity: 0.6;
+  }
+
+
+  /* MAIN ANIMATION */
+
+  .hero-visual {
+    min-height: 165px;
+    margin-top: -30px;
+  }
+
+  .hero-3d-stage {
+    width: 285px;
+    height: 285px;
+
+    transform:
+      scale(0.86)
+      rotateX(var(--tiltX))
+      rotateY(var(--tiltY));
+  }
+
+  .orbit-chip {
+    font-size: 0.62rem;
+    padding: 4px 8px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 320px) {
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.85rem;
+  }
+
+
+  .hero-left-decor {
+    transform: scale(0.5);
+  }
+
+
+  .hero-visual {
+    min-height: 150px;
+    margin-top: -25px;
+  }
+
+
+  .hero-3d-stage {
+    width: 265px;
+    height: 265px;
+
+    transform:
+      scale(0.8)
+      rotateX(var(--tiltX))
+      rotateY(var(--tiltY));
   }
 }
