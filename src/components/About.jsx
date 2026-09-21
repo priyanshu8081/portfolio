@@ -31,7 +31,7 @@ const About = () => {
           if (!entry.isIntersecting || hasAnimated.current) return;
           hasAnimated.current = true;
 
-          const duration = 1400;
+          const duration = 2000;
           const start = performance.now();
 
           const tick = (now) => {
