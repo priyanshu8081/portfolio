@@ -4,6 +4,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import BackToTop from './components/BackToTop';
+import CustomCursor from './components/CustomCursor';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -32,6 +33,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+
+      <CustomCursor />
 
       <BackToTop />
     </ThemeProvider>

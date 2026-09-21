@@ -67,6 +67,7 @@
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--accent);
+  font-variant-numeric: tabular-nums;
 }
 
 .about-stat-label {

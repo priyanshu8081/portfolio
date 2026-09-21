@@ -1,7 +1,37 @@
-import React from 'react';
+import React, { useRef, useCallback } from 'react';
 import '../styles/Hero.css';
 
+const TECH_ORBIT = ['React', 'Node.js', 'Express', 'MongoDB', 'JS'];
+
 const Hero = () => {
+  const sceneRef = useRef(null);
+  const frameRef = useRef(null);
+
+  const handleMouseMove = useCallback((e) => {
+    const node = sceneRef.current;
+    if (!node) return;
+    const rect = node.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+
+    if (frameRef.current) cancelAnimationFrame(frameRef.current);
+    frameRef.current = requestAnimationFrame(() => {
+      node.style.setProperty('--tiltX', `${(-py * 16).toFixed(2)}deg`);
+      node.style.setProperty('--tiltY', `${(px * 16).toFixed(2)}deg`);
+      node.style.setProperty('--glowX', `${(px * 100 + 50).toFixed(1)}%`);
+      node.style.setProperty('--glowY', `${(py * 100 + 50).toFixed(1)}%`);
+    });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    const node = sceneRef.current;
+    if (!node) return;
+    node.style.setProperty('--tiltX', '0deg');
+    node.style.setProperty('--tiltY', '0deg');
+    node.style.setProperty('--glowX', '50%');
+    node.style.setProperty('--glowY', '50%');
+  }, []);
+
   return (
     <section id="home" className="hero">
       <div className="hero-bg" aria-hidden="true">
@@ -10,7 +40,48 @@ const Hero = () => {
         <div className="hero-grid" />
       </div>
 
-      <div className="container hero-inner">
+      <div className="container hero-content-grid">
+      <div className="hero-inner">
+        <div className="hero-left-decor" aria-hidden="true">
+          <div className="decor-shape decor-square" />
+          <div className="decor-shape decor-orb" />
+          <span className="decor-badge decor-badge-1">{'</>'}</span>
+          <span className="decor-badge decor-badge-2">{'{ }'}</span>
+          <div className="decor-dot d1" />
+          <div className="decor-dot d2" />
+          <div className="decor-dot d3" />
+
+          <div className="decor-ping-wrap">
+            <span className="decor-ping" />
+            <span className="decor-ping ping-delay" />
+            <span className="decor-ping-core" />
+          </div>
+
+          <div className="decor-terminal">
+            <span className="decor-terminal-line">
+              const dev = <em>"ready"</em>;
+            </span>
+            <span className="decor-cursor" />
+          </div>
+
+          <div className="decor-orbit-mini">
+            <span className="mini-core" />
+            <div className="decor-mini-ring ring-a">
+              <span className="mini-chip-holder" style={{ '--angle': '0deg' }}>
+                <span className="mini-chip">UI</span>
+              </span>
+              <span className="mini-chip-holder" style={{ '--angle': '180deg' }}>
+                <span className="mini-chip">UX</span>
+              </span>
+            </div>
+            <div className="decor-mini-ring ring-b">
+              <span className="mini-chip-holder outer" style={{ '--angle': '90deg' }}>
+                <span className="mini-chip">Git</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
         <p className="hero-greeting" data-reveal>
           <span className="hero-dot" /> Available for opportunities
         </p>
@@ -71,6 +142,50 @@ const Hero = () => {
         <a href="#about" className="hero-scroll-indicator" aria-label="Scroll to About section">
           <span />
         </a>
+      </div>
+
+      <div
+        className="hero-visual"
+        ref={sceneRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        aria-hidden="true"
+      >
+        <div className="hero-3d-stage">
+          <div className="hero-3d-glow" />
+
+          <div className="orbit-core" />
+
+          <div className="orbit-ring ring-inner">
+            {TECH_ORBIT.slice(0, 3).map((label, i) => (
+              <span
+                className="orbit-chip-holder"
+                key={label}
+                style={{ '--angle': `${i * 120}deg` }}
+              >
+                <span className="orbit-chip">{label}</span>
+              </span>
+            ))}
+          </div>
+
+          <div className="orbit-ring ring-outer">
+            {TECH_ORBIT.slice(3).map((label, i) => (
+              <span
+                className="orbit-chip-holder"
+                key={label}
+                style={{ '--angle': `${i * 180 + 45}deg` }}
+              >
+                <span className="orbit-chip">{label}</span>
+              </span>
+            ))}
+          </div>
+
+          <div className="hero-3d-particle p1" />
+          <div className="hero-3d-particle p2" />
+          <div className="hero-3d-particle p3" />
+          <div className="hero-3d-particle p4" />
+        </div>
+      </div>
       </div>
     </section>
   );

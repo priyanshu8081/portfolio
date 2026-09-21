@@ -1,15 +1,60 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import useScrollReveal from '../hooks/useScrollReveal';
 import '../styles/About.css';
 
 const stats = [
-  { label: 'CGPA', value: '8.05' },
-  { label: 'Training', value: '6 mo.' },
-  { label: 'Projects Built', value: '4+' },
+  { label: 'CGPA', target: 8.05, decimals: 2, suffix: '' },
+  { label: 'Training', target: 6, decimals: 0, suffix: ' mo.' },
+  { label: 'Projects Built', target: 4, decimals: 0, suffix: '+' },
 ];
+
+const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
 
 const About = () => {
   const containerRef = useScrollReveal();
+  const statsRef = useRef(null);
+  const hasAnimated = useRef(false);
+  const [counts, setCounts] = useState(() => stats.map(() => 0));
+
+  useEffect(() => {
+    const node = statsRef.current;
+    if (!node) return undefined;
+
+    if (!('IntersectionObserver' in window)) {
+      setCounts(stats.map((s) => s.target));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting || hasAnimated.current) return;
+          hasAnimated.current = true;
+
+          const duration = 1400;
+          const start = performance.now();
+
+          const tick = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = easeOutQuart(progress);
+            setCounts(stats.map((s) => s.target * eased));
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              setCounts(stats.map((s) => s.target));
+            }
+          };
+
+          requestAnimationFrame(tick);
+          observer.unobserve(node);
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="about" className="section about" ref={containerRef}>
@@ -34,10 +79,13 @@ const About = () => {
 };`}
             </pre>
           </div>
-          <div className="about-stats">
-            {stats.map((s) => (
+          <div className="about-stats" ref={statsRef}>
+            {stats.map((s, i) => (
               <div className="about-stat" key={s.label}>
-                <p className="about-stat-value">{s.value}</p>
+                <p className="about-stat-value">
+                  {counts[i].toFixed(s.decimals)}
+                  {s.suffix}
+                </p>
                 <p className="about-stat-label">{s.label}</p>
               </div>
             ))}
